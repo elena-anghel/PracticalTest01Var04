@@ -68,4 +68,27 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        EditText editText1 = findViewById(R.id.editText1);
+        EditText editText2 = findViewById(R.id.editText2);
+
+        outState.putString("editText1", editText1.getText().toString());
+        outState.putString("editText2", editText2.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        EditText editText1 = findViewById(R.id.editText1);
+        EditText editText2 = findViewById(R.id.editText2);
+
+        editText1.setText(savedInstanceState.getString("editText1"));
+        editText2.setText(savedInstanceState.getString("editText2"));
+    }
+
 }
