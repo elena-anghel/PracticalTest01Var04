@@ -1,5 +1,6 @@
 package ro.pub.cs.systems.eim.practicaltest01var04;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class PracticalTest01Var04MainActivity extends AppCompatActivity {
 
+    private static final int SECONDARY_ACTIVITY_REQUEST_CODE = 0;
     private Button displayButton = null;
     private Button navigateButton = null;
     private CheckBox checkBox1 = null;
@@ -29,6 +31,16 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_practical_test01_var04_main);
 
         displayButton = findViewById(R.id.displayInformation);
+        navigateButton = findViewById(R.id.navigate_button);
+        navigateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PracticalTest01Var04MainActivity.this, PracticalTest01Var04SecondaryActivity.class);
+                intent.putExtra("FIRST_TEXT", editText1.getText().toString());
+                intent.putExtra("SECOND_TEXT", editText2.getText().toString());
+                startActivityForResult(intent, SECONDARY_ACTIVITY_REQUEST_CODE);
+            }
+        });
         displayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,6 +79,18 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SECONDARY_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(this, "Returned with OK", Toast.LENGTH_LONG).show();
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "Returned with Cancel", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override
