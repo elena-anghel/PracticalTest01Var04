@@ -27,6 +27,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <service android:name=".PracticalTest01Var04Service"></service>
     </application>
 
 </manifest>

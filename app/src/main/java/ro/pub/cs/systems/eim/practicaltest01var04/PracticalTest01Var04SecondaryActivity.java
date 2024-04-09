@@ -10,7 +10,6 @@ import android.widget.EditText;
 public class PracticalTest01Var04SecondaryActivity extends Activity {
     private EditText firstText, secondText;
     private Button okButton, cancelButton;
-    private int totalClicks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
